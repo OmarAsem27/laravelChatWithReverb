@@ -45,4 +45,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+
+    public function isOnline()
+    {
+        return cache()->has('user-is-online' . $this->id);
+    }
 }
