@@ -17,7 +17,7 @@ class UserTyping implements ShouldBroadcast
     /**
      * Create a new event instance.
      */
-    public function __construct(public $ty  perId)
+    public function __construct(public $typerId)
     {
         //
     }
@@ -30,7 +30,7 @@ class UserTyping implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new PrivateChannel('typing' . $this->typerId),
+            new PrivateChannel('typing.' . $this->typerId),
         ];
     }
 }
