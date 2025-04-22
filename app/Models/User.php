@@ -49,6 +49,6 @@ class User extends Authenticatable
 
     public function isOnline()
     {
-        return cache()->has('user-is-online' . $this->id);
+        return cache()->has('user-is-online-' . $this->id);
     }
 }

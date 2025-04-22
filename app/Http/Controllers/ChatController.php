@@ -32,9 +32,8 @@ class ChatController extends Controller
             $query->where('sender_id', Auth::id())->where('receiver_id', $receiverId);
         })->orWhere(function ($query) use ($receiverId) {
             $query->where('sender_id', $receiverId)->where('receiver_id', Auth::id());
-        })->get();
-        // "select * from `messages` where (`sender_id` = ? and `receiver_id` = ?) or (`sender_id` = ? and `receiver_id` = ?)"
-
+        })->orderBy('created_at')->get();
+        // "select * from `messages` where (`sender_id` = ? and `receiver_id` = ?) or (`sender_id` = ? and `receiver_id` = ?) order by `created_at` asc"
         return view('chat', compact('messages', 'receiver'));
     }
 

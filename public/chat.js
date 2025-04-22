@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
     });
 
+    
     // subscribe to the private channel for sending message
     window.Echo.private("chat." + senderId).listen("MessageSent", (e) => {
         // show message
@@ -28,13 +29,14 @@ document.addEventListener("DOMContentLoaded", function () {
         chatBox.scrollTop = chatBox.scrollHeight;
     });
 
+
     // subscribe to the private channel for user typing
     window.Echo.private("typing." + receiverId).listen("UserTyping", (e) => {
-        // console.log(e);
         if (e.typerId == receiverId) {
-            typingIndicator.style.display = "block";
+                typingIndicator.style.display = "block";
         }
     });
+
 
     messageForm.addEventListener("submit", function (e) {
         e.preventDefault(); // to NOT make a refresh to the page
@@ -58,6 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
         chatBox.scrollTop = chatBox.scrollHeight;
         messageInput.value = "";
     });
+
 
     messageInput.addEventListener("input", function () {
         fetch("/chat/typing", {
